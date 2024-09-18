@@ -3,7 +3,7 @@ from . import views
 #URL konfiguracija
 
 urlpatterns = [
-    #path('', pocetna, name='pocetna'),
+    path('', views.pocetna, name='pocetna'),
     path('nastambe/', views.nastamba_list, name='nastamba_list'),  # Prikaz svih nastambi
     path('nastambe/<int:id>/', views.nastamba_detail, name='nastamba_detail'),  # Detaljan prikaz nastambe
     path('nastambe/dodaj/', views.nastamba_create, name='nastamba_create'),  # Kreiranje nove nastambe

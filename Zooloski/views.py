@@ -5,8 +5,8 @@ from .forms import NastambaForm
 from django.contrib.auth.views import LoginView
 # Create your views here.
 
-#def pocetna(request):
- #   return render(request, 'pocetna.html')
+def pocetna(request):
+    return render(request, 'pocetna.html')
 
 class CustomLoginView(LoginView):
     def get_success_url(self):
