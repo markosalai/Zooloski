@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from Zooloski.views import CustomLoginView
 from django.urls import path, include
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -24,5 +25,5 @@ def test_view(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('zooloski/', include('Zooloski.urls')), # svaki URL sto ide na Zooloski/ neka ga obradi Zooloski aplikacija 
-    path("test", test_view)
+    path('accounts/login/', CustomLoginView.as_view(), name='login')    
 ]

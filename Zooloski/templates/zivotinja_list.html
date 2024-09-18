@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Životinje{% endblock %}
+
+{% block content %}
+    <h2>Popis Životinja</h2>
+    
+    {% if zivotinje %}
+        <ul>
+            {% for zivotinja in zivotinje %}
+                <li>{{ zivotinja.ime }} ({{ zivotinja.hrvatski_naziv }})
+                    <a href="{% url 'zivotinja_update' zivotinja.id %}">Uredi</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nema unesenih životinja.</p>
+        <a href="{% url 'zivotinja_create' %}">Dodaj novu životinju</a>
+    {% endif %}
+    <a href="{% url 'zivotinja_create' %}">Dodaj novu životinju</a>
+{% endblock %}

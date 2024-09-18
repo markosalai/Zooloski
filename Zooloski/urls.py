@@ -9,4 +9,7 @@ urlpatterns = [
     path('nastambe/dodaj/', views.nastamba_create, name='nastamba_create'),  # Kreiranje nove nastambe
     path('nastambe/<int:id>/uredi/', views.nastamba_update, name='nastamba_update'),  # Uređivanje nastambe
     path('nastambe/<int:id>/arhiviraj/', views.nastamba_archive, name='nastamba_archive'),  # Arhiviranje nastambe (soft delete)
+    path('zivotinje/', views.zivotinja_list, name='zivotinja_list'),
+    path('zivotinje/dodaj/', views.zivotinja_create, name='zivotinja_create'),
+    path('zivotinje/<int:id>/uredi/', views.zivotinja_update, name='zivotinja_update'),  # URL za uređivanje životinja
 ]
