@@ -12,4 +12,6 @@ urlpatterns = [
     path('zivotinje/', views.zivotinja_list, name='zivotinja_list'),
     path('zivotinje/dodaj/', views.zivotinja_create, name='zivotinja_create'),
     path('zivotinje/<int:id>/uredi/', views.zivotinja_update, name='zivotinja_update'),  # URL za uređivanje životinja
+    path('report/zivotinje',views.report_zivotinje,name='report_zivotinje') # Izvjestaj troskova zivotinja
+
 ]

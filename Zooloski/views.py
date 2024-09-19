@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import *
-from .forms import NastambaForm, ZivotinjaForm
+from .forms import NastambaForm,ZivotinjaForm
 from django.contrib.auth.views import LoginView
 # Create your views here.
 
@@ -86,3 +86,37 @@ def zivotinja_update(request, id):
     else:
         form = ZivotinjaForm(instance=zivotinja)
     return render(request, 'zivotinja_form.html', {'form': form})
+
+
+
+def report_zivotinje(request):
+    
+    zivotinja_values = Zivotinja.objects.filter(arhiviran=False)# Get all Zivotinja instances
+    combined_data = []
+
+    # Iteracija kroz Zivotinje i pronalazi Trosak koji je u odnosu sa ziv 
+    for zivotinja in zivotinja_values:
+        #Ako nije stavljena kolicina predpostavlja da je 1
+        if(zivotinja.broj == None):
+            Broj = 1
+        else: 
+            Broj = zivotinja.broj
+            
+        trosak_entries = Trosak.objects.filter(zivotinja=zivotinja)
+        
+        combined_data.append({
+            'zivotinja': zivotinja.ime,  # or whatever field represents the name
+            'zivotinja_kolicina': Broj,  # kolicina zivotinja
+            'trosak_entries':[
+                {'kolicina': trosak.kolicina} for trosak in trosak_entries
+            ],  # Extract opis and kolicina for each Trosak entry
+            'Ukupno':[
+                {'suma': trosak.kolicina * Broj} for trosak in trosak_entries 
+            ]
+        })
+
+    # Pass the combined data to the template
+    context = {
+        'combined_data': combined_data
+    }
+    return render(request, 'report.html', context)

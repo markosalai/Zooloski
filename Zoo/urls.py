@@ -25,5 +25,5 @@ def test_view(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('zooloski/', include('Zooloski.urls')), # svaki URL sto ide na Zooloski/ neka ga obradi Zooloski aplikacija 
-    path('accounts/login/', CustomLoginView.as_view(), name='login')    
+    path('accounts/login/', CustomLoginView.as_view(), name='login'),
 ]
