@@ -8,7 +8,9 @@
     {% if zivotinje %}
         <ul>
             {% for zivotinja in zivotinje %}
-                <li>{{ zivotinja.ime }} ({{ zivotinja.hrvatski_naziv }})
+                <li>
+                    <a href="{% url 'zivotinja_detail' zivotinja.id %}">
+                        {{ zivotinja.ime }} ({{ zivotinja.hrvatski_naziv }})</a>
                     <a href="{% url 'zivotinja_update' zivotinja.id %}">Uredi</a>
                 </li>
             {% endfor %}

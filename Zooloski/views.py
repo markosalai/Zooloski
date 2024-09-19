@@ -65,6 +65,9 @@ def zivotinja_list(request):
     else:
         form = ZivotinjaForm()
     return render(request, 'zivotinja_list.html', {'zivotinje': zivotinje, 'form': form})
+def zivotinja_detail(request, id):
+    zivotinja = get_object_or_404(Zivotinja, id=id)
+    return render(request, 'zivotinja_detail.html', {'zivotinja': zivotinja})
 
 def zivotinja_create(request):
     if request.method == 'POST':
