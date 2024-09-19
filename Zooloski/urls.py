@@ -13,6 +13,8 @@ urlpatterns = [
     path('zivotinje/<int:id>/', views.zivotinja_detail, name='zivotinja_detail'),
     path('zivotinje/dodaj/', views.zivotinja_create, name='zivotinja_create'),
     path('zivotinje/<int:id>/uredi/', views.zivotinja_update, name='zivotinja_update'),  # URL za uređivanje životinja
-    path('report/zivotinje',views.report_zivotinje,name='report_zivotinje') # Izvjestaj troskova zivotinja
+    path('report/zivotinje',views.report_zivotinje,name='report_zivotinje'), # Izvjestaj troskova zivotinja
+    path('radnici/', views.radnik_list, name='radnik_list'),
+    path('radnici/<int:id>', views.radnik_detail, name='radnik_detail'),
 
 ]

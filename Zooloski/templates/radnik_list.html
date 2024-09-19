@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Radnici{% endblock %}
+
+{% block content %}
+    <h2>Popis radnika</h2>
+    <ul>
+        {% for radnik in radnici %}
+            <li>
+                    <a href = "{% url 'radnik_detail' radnik.id %}">{{ radnik.ime }} {{ radnik.prezime }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

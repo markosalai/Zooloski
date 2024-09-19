@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import *
-from .forms import NastambaForm,ZivotinjaForm
+from .forms import NastambaForm, ZivotinjaForm
 from django.contrib.auth.views import LoginView
 # Create your views here.
 
@@ -65,6 +65,7 @@ def zivotinja_list(request):
     else:
         form = ZivotinjaForm()
     return render(request, 'zivotinja_list.html', {'zivotinje': zivotinje, 'form': form})
+
 def zivotinja_detail(request, id):
     zivotinja = get_object_or_404(Zivotinja, id=id)
     return render(request, 'zivotinja_detail.html', {'zivotinja': zivotinja})
@@ -123,3 +124,11 @@ def report_zivotinje(request):
         'combined_data': combined_data
     }
     return render(request, 'report.html', context)
+
+def radnik_list(request):
+    radnici = Radnik.objects.all()
+    return render(request, 'radnik_list.html', {'radnici' : radnici})
+
+def radnik_detail(request, id):
+    radnik = get_object_or_404(Radnik, id=id)
+    return render(request, 'radnik_detail.html', {'radnik': radnik})
