@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import *
-from .forms import NastambaForm, ZivotinjaForm, ObavezaForm
+from .forms import NastambaForm, ZivotinjaForm, ObavezaForm,NezgodaForm,TrosakForm
 from django.contrib.auth.views import LoginView
 # Create your views here.
 
@@ -162,3 +162,36 @@ def obaveza_complete(request, id):
     obaveza.status = 'Obavljeno'
     obaveza.save()
     return redirect('obaveza_list')
+
+def izvjesca(request):
+    return render(request,'Izvjesca.html')
+
+def nezgoda_list(request):
+    nezgoda_values = Nezgoda.objects.all()
+    context = {
+        'nezgoda_values':nezgoda_values # Dodajemo jer da se salju podaci dalje moraju biti u rijcniku 
+    }
+    return render(request,'nezgoda.html',context)#Ovdje koristimo taj rijcnik za predaju 
+
+# Kreiranje nove Trosak
+def trosak_create(request):
+    if request.method == 'POST':
+        form = TrosakForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('')
+    else:
+        form = TrosakForm()
+    return render(request, 'trosak_form.html', {'form': form})
+
+
+
+def nezgoda_create(request):
+    if request.method == 'POST':
+        form = NezgodaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('')
+    else:
+        form = NezgodaForm()
+    return render(request, 'nezgoda_form.html', {'form': form})
