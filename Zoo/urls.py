@@ -19,6 +19,7 @@ from Zooloski.views import CustomLoginView
 from django.urls import path, include
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from django.shortcuts import redirect
 
 def test_view(request):
      return HttpResponse(render_to_string('index.html'))
@@ -26,4 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('zooloski/', include('Zooloski.urls')), # svaki URL sto ide na Zooloski/ neka ga obradi Zooloski aplikacija 
     path('accounts/login/', CustomLoginView.as_view(), name='login'),
+    path('', lambda request: redirect('/zooloski/')),  # Redirect '' to '/zooloski/'
 ]
