@@ -1,5 +1,5 @@
 from django import forms
-from .models import Nastamba, Zivotinja, Radnik
+from .models import Nastamba, Zivotinja, Radnik, Obaveza
 
 class NastambaForm(forms.ModelForm):
     class Meta:
@@ -13,3 +13,8 @@ class RadnikForm(forms.ModelForm):
     class Meta:
         model = Radnik
         fields = ['ime', 'prezime', 'kontakt', 'obrazovanje', 'sposobnost', 'rok_trajanja_kvalifikacija']
+class ObavezaForm(forms.ModelForm):
+    class Meta:
+        model = Obaveza
+        fields = ['zivotinja', 'vrsta_obaveze', 'status', 'datum', 'komentari']
+

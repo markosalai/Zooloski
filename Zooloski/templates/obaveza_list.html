@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Popis Obaveza{% endblock %}
+
+{% block content %}
+    <h2>Popis Obaveza</h2>
+
+    <ul>
+        {% for obaveza in obaveze %}
+            <li class="{% if obaveza.status == 'Obavljeno' %}completed-task{% endif %}">
+                {{ obaveza.vrsta_obaveze }} za {{ obaveza.zivotinja }} - Status: {{ obaveza.status }} - Datum: {{ obaveza.datum }}
+                {% if obaveza.status != 'Obavljeno' %}
+                    <form method="POST" action="{% url 'obaveza_complete' obaveza.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Označi kao obavljeno</button>
+                    </form>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Trenutno nema obaveza.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'obaveza_create' %}">Dodaj novu obavezu</a>
+{% endblock %}

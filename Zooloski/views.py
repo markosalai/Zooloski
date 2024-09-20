@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import *
-from .forms import NastambaForm, ZivotinjaForm
+from .forms import NastambaForm, ZivotinjaForm, ObavezaForm
 from django.contrib.auth.views import LoginView
 # Create your views here.
 
@@ -141,3 +141,24 @@ def radnik_list(request):
 def radnik_detail(request, id):
     radnik = get_object_or_404(Radnik, id=id)
     return render(request, 'radnik_detail.html', {'radnik': radnik})
+
+def obaveza_list(request):
+    obaveze = Obaveza.objects.all()
+    return render(request, 'obaveza_list.html', {'obaveze': obaveze})
+
+def obaveza_create(request):
+    if request.method == 'POST':
+        form = ObavezaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('obaveza_list')
+    else:
+        form = ObavezaForm()
+    
+    return render(request, 'obaveza_form.html', {'form': form})
+
+def obaveza_complete(request, id):
+    obaveza = get_object_or_404(Obaveza, id=id)
+    obaveza.status = 'Obavljeno'
+    obaveza.save()
+    return redirect('obaveza_list')

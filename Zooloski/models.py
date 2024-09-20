@@ -1,21 +1,10 @@
 from django.db import models
 
-# Create your models here.
-class Zadatak(models.Model):
-    name = models.CharField(max_length=100)
-    
-    def __str__ (self):
-        return self.name
-class Item(models.Model):
-    zadatak = models.ForeignKey(Zadatak, on_delete=models.CASCADE)
-    text = models.CharField(max_length=200)
-    obavljen = models.BooleanField()
-
-    def __str__(self):
-        return self.text
-from django.db import models
-
 class Nastamba(models.Model):
+    class Meta:
+        verbose_name = "Nastamba"
+        verbose_name_plural = "Nastambe"
+
     BROJ_CHOICES = [
         ('Mračna', 'Mračna'),
         ('Grijana', 'Grijana'),
@@ -40,6 +29,10 @@ class Nastamba(models.Model):
         return self.ime or f'Nastamba {self.broj}'
     
 class Zivotinja(models.Model):
+    class Meta:
+        verbose_name = "Zivotinja"
+        verbose_name_plural = "Zivotinje"
+
     hrvatski_naziv = models.CharField(max_length=255)
     latinski_naziv = models.CharField(max_length=255)
     engleski_naziv = models.CharField(max_length=255)
@@ -58,6 +51,10 @@ class Zivotinja(models.Model):
         return self.ime or self.hrvatski_naziv
     
 class Obaveza(models.Model):
+    class Meta:
+        verbose_name = "Obaveza"
+        verbose_name_plural = "Obveze"
+        
     zivotinja = models.ForeignKey(Zivotinja, on_delete=models.CASCADE)
     vrsta_obaveze = models.CharField(max_length=255)  # e.g., feeding, cleaning
     status = models.CharField(max_length=10, choices=[
@@ -71,6 +68,10 @@ class Obaveza(models.Model):
         return f'{self.vrsta_obaveze} - {self.zivotinja}'
     
 class Radnik(models.Model):
+    class Meta:
+        verbose_name = "Radnik"
+        verbose_name_plural = "Radnici"
+
     ime = models.CharField(max_length=255)
     prezime = models.CharField(max_length=255)
     kontakt = models.CharField(max_length=255)
@@ -80,7 +81,11 @@ class Radnik(models.Model):
 
     def __str__(self):
         return f'{self.ime} {self.prezime}'
+    
 class KalendarRada(models.Model):
+    class Meta:
+        verbose_name_plural = "Kalendar rada"
+
     radnik = models.ForeignKey(Radnik, on_delete=models.CASCADE)
     datum = models.DateField()
     dostupnost = models.CharField(max_length=15, choices=[
@@ -93,6 +98,10 @@ class KalendarRada(models.Model):
         return f'{self.radnik} - {self.datum} - {self.dostupnost}'
     
 class Trosak(models.Model):
+    class Meta:
+        verbose_name = "Trosak"
+        verbose_name_plural = "Troskovi"
+
     zivotinja = models.ForeignKey(Zivotinja, on_delete=models.CASCADE)
     opis = models.CharField(max_length=255)
     kolicina = models.DecimalField(max_digits=10, decimal_places=2)
@@ -100,7 +109,12 @@ class Trosak(models.Model):
 
     def __str__(self):
         return f'{self.opis} - {self.zivotinja}'
+    
 class GrupnaPosjeta(models.Model):
+    class Meta:
+        verbose_name = "Grupna posjeta"
+        verbose_name_plural = "Grupne posjete"
+
     datum = models.DateField()
     vodic = models.ForeignKey(Radnik, on_delete=models.SET_NULL, null=True)
     broj_posjetitelja = models.IntegerField()
@@ -109,6 +123,10 @@ class GrupnaPosjeta(models.Model):
         return f'Posjeta na datum {self.datum} - {self.vodic}'
 
 class Nezgoda(models.Model):
+    class Meta:
+        verbose_name = "Nezgoda"
+        verbose_name_plural = "Nezgode"
+
     vrsta = models.CharField(max_length=255)
     utjecaj = models.TextField()
     nastamba = models.ForeignKey(Nastamba, on_delete=models.CASCADE)

@@ -50,6 +50,10 @@
             text-align: center;
             margin-top: auto; /* Push footer to the bottom */
         }
+        .completed-task {
+            text-decoration: line-through; 
+            color: grey;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +65,7 @@
                     <li class="mr-3"><a href="{% url 'nastamba_list' %}">Nastambe</a></li>
                     <li class="mr-3"><a href="{% url 'zivotinja_list' %}">Životinje</a></li>
                     <li class="mr-3"><a href="{% url 'radnik_list' %}">Radnici</a></li>
+                    <li class="mr-3"><a href="{% url 'obaveza_list' %}">Obveze</a></li>
                 </ul>
             </nav>
         </div>

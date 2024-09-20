@@ -17,8 +17,12 @@ urlpatterns = [
     path('zivotinje/<int:id>/uredi/', views.zivotinja_update, name='zivotinja_update'),  # URL za uređivanje životinja
     path('report/zivotinje',views.report_zivotinje,name='report_zivotinje'), # Izvjestaj troskova zivotinja
     path('zivotinje/arhivirane',views.arhivirane_zivotinje,name='arhivirane_zivotinje'),
-    
+
     path('radnici/', views.radnik_list, name='radnik_list'),
     path('radnici/<int:id>', views.radnik_detail, name='radnik_detail'),
+
+    path('obaveze/', views.obaveza_list, name='obaveza_list'),
+    path('obaveze/dodaj/', views.obaveza_create, name='obaveza_create'),
+    path('obaveze/<int:id>/zavrsi/', views.obaveza_complete, name='obaveza_complete'),
 
 ]
