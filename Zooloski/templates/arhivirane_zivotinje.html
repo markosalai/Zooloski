@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Arhivirane Životinje{% endblock %}
+
+{% block content %}
+    <h2>Popis Arhiviranih Životinja</h2>
+    <ul>
+        {% for zivotinja in arhivirane %}
+            <li>
+                <a href="{% url 'zivotinja_detail' zivotinja.id %}">
+                    {{ zivotinja.hrvatski_naziv }} - {{ zivotinja.ime }}
+                </a>
+            </li>
+        {% empty %}
+            <li>Nema arhiviranih životinja.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'zivotinja_list' %}">Natrag na popis životinja</a>
+{% endblock %}

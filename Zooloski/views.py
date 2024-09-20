@@ -91,7 +91,16 @@ def zivotinja_update(request, id):
         form = ZivotinjaForm(instance=zivotinja)
     return render(request, 'zivotinja_form.html', {'form': form})
 
+def zivotinja_archive(request, id):
+    zivotinja = get_object_or_404(Zivotinja, id=id)
+    zivotinja.arhiviran = True  # Soft delete, postavljanje je_aktivna na False
+    zivotinja.save()
+    return redirect('zivotinja_list')
 
+def arhivirane_zivotinje(request):
+    # Filtriranje samo onih životinja koje su arhivirane
+    arhivirane = Zivotinja.objects.filter(arhiviran=True)
+    return render(request, 'arhivirane_zivotinje.html', {'arhivirane': arhivirane})
 
 def report_zivotinje(request):
     
