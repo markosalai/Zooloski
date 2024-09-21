@@ -179,7 +179,7 @@ def trosak_create(request):
         form = TrosakForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('/zooloski/izvjesca')
     else:
         form = TrosakForm()
     return render(request, 'trosak_form.html', {'form': form})
@@ -191,7 +191,7 @@ def nezgoda_create(request):
         form = NezgodaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('')
+            return redirect('/zooloski/izvjesca')
     else:
         form = NezgodaForm()
     return render(request, 'nezgoda_form.html', {'form': form})

@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2>{% if form.instance.id %}Uredi{% else %}Dodaj{% endif %} Nezgodu</h2>
-<form method="post"></form>
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Spremi</button>

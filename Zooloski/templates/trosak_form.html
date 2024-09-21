@@ -3,14 +3,11 @@
 {% block content %}
 
 <h2>{% if form.instance.id %}Uredi{% else %}Dodaj{% endif %} Trosak</h2>
-<form method="post"></form>
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Spremi</button>
 </form>
 <a href="{% url 'izvjesca' %}">Natrag na popis nastambi</a>
-
-
-
 
 {% endblock %}
