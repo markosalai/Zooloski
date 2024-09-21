@@ -25,7 +25,7 @@ urlpatterns = [
     path('obaveze/<int:id>/zavrsi/', views.obaveza_complete, name='obaveza_complete'),
 
     path('report/zivotinje',views.report_zivotinje,name='report_zivotinje'), # Izvjestaj troskova zivotinja
-    path('izvjesca',views.izvjesca,name='izvjesca'),
+    path('izvjesca/',views.izvjesca,name='izvjesca'),
     path('izvjesca/nezgoda',views.nezgoda_list,name='nezgoda_list'),
     path('izvjesca/nezgoda/dodaj',views.nezgoda_create,name='nezgoda_create'),
     path('izvjesca/trosak/dodaj',views.trosak_create,name='trosak_create'),
