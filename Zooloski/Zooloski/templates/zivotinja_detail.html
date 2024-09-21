@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Detalji o životinji: {{ zivotinja.ime }}</h2>
+<p><strong>Hrvatski naziv:</strong> {{ zivotinja.hrvatski_naziv }}</p>
+<p><strong>Latinski naziv:</strong> {{ zivotinja.latinski_naziv }}</p>
+<p><strong>Engleski naziv:</strong> {{ zivotinja.engleski_naziv }}</p>
+<p><strong>Ime:</strong> {{ zivotinja.ime }}</p>
+<p><strong>Broj:</strong> {{ zivotinja.broj }}</p>
+<p><strong>Nastamba:</strong> {{ zivotinja.nastamba }}</p>
+<p><strong>Porijeklo:</strong> {{ zivotinja.porijeklo }}</p>
+<p><strong>Datum dolaska u Zoo:</strong> {{ zivotinja.datum_nastanka }}</p>
+<a href="{% url 'zivotinja_update' zivotinja.id %}">Uredi</a>
+<a href="{% url 'zivotinja_list' %}">Natrag na popis životinja</a>
+{% endblock %}

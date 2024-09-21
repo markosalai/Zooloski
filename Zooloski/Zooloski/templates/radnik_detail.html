@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Detalji o radniku: {{ radnik.ime }} {{ radnik.prezime }}</h2>
+<p><strong>Ime:</strong> {{ radnik.ime }}</p>
+<p><strong>Prezime:</strong> {{ radnik.prezime}}</p>
+<p><strong>Kontakt:</strong> {{ radnik.kontakt }}</p>
+<p><strong>Obrazovanje:</strong> {{ radnik.obrazovanje }}</p>
+<p><strong>Sposobnost:</strong> {{ radnik.sposobnost }}</p>
+<a href="{% url 'radnik_list' %}">Natrag na popis radnika</a>
+{% endblock %}

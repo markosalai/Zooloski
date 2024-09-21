@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Dodaj Obvezu{% endblock %}
+
+{% block content %}
+    <h2>Dodaj novu obvezu</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Spremi obvezu</button>
+    </form>
+    <a href="{% url 'obaveza_list' %}">Natrag na listu obveza</a>
+{% endblock %}
